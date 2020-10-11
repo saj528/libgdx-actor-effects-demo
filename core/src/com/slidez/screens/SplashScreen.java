@@ -27,6 +27,8 @@ public class SplashScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
         Texture splashTex = new Texture(Gdx.files.internal("splash.png"));
         splashImg = new Image(splashTex);
+        //removes the need to have an offset
+        splashImg.setOrigin(splashImg.getWidth()/2, splashImg.getHeight()/2);
         stage.addActor(splashImg);
     }
 
@@ -40,7 +42,9 @@ public class SplashScreen implements Screen {
         //splashImg.addAction(fadeIn(3f));
         //this line does the fancy moving
         splashImg.addAction(sequence(alpha(0),scaleTo(.1f,.1f),
-                parallel(fadeIn(2f, Interpolation.pow2),scaleTo(2f,2f,2.5f,Interpolation.pow5),moveTo(stage.getWidth()/2-32,stage.getHeight()/2-32,2f,Interpolation.swing))));
+                parallel(fadeIn(2f, Interpolation.pow2),scaleTo(2f,2f,2.5f,Interpolation.pow5),
+                        moveTo(stage.getWidth()/2-32,stage.getHeight()/2-32,2f,Interpolation.swing)),
+                delay(1.5f),fadeOut(1.25f)));
     }
 
     @Override
