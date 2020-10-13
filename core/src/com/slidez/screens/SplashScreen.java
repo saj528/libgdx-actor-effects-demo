@@ -24,12 +24,7 @@ public class SplashScreen implements Screen {
     public SplashScreen(final Application app){
         this.app = app;
         this.stage = new Stage(new StretchViewport(Application.V_WIDTH,Application.V_HEIGHT, app.camera));
-        Gdx.input.setInputProcessor(stage);
-        Texture splashTex = new Texture(Gdx.files.internal("splash.png"));
-        splashImg = new Image(splashTex);
-        //removes the need to have an offset
-        splashImg.setOrigin(splashImg.getWidth()/2, splashImg.getHeight()/2);
-        stage.addActor(splashImg);
+
     }
 
     //runs once every time a screen is loaded
@@ -37,7 +32,14 @@ public class SplashScreen implements Screen {
     @Override
     public void show() {
         System.out.println("Show");
-        splashImg.setPosition(stage.getWidth()/2-32,stage.getHeight()/2-32);
+        Gdx.input.setInputProcessor(stage);
+
+        //retrieves item from assetmanager
+        Texture splashTex = app.assets.get("splash.png",Texture.class);
+        splashImg = new Image(splashTex);
+        //removes the need to have an offset
+        splashImg.setOrigin(splashImg.getWidth()/2, splashImg.getHeight()/2);
+        splashImg.setPosition(stage.getWidth()/2-32,stage.getHeight() + 32);
         //splashImg.addAction(alpha(.0f));
         //splashImg.addAction(fadeIn(3f));
         //this line does the fancy moving
@@ -45,6 +47,8 @@ public class SplashScreen implements Screen {
                 parallel(fadeIn(2f, Interpolation.pow2),scaleTo(2f,2f,2.5f,Interpolation.pow5),
                         moveTo(stage.getWidth()/2-32,stage.getHeight()/2-32,2f,Interpolation.swing)),
                 delay(1.5f),fadeOut(1.25f)));
+
+        stage.addActor(splashImg);
     }
 
     @Override
@@ -55,7 +59,7 @@ public class SplashScreen implements Screen {
         update(delta);
         stage.draw();
         app.batch.begin();
-        app.font.draw(app.batch,"Splashscreen",120,120);
+        app.font24.draw(app.batch,"Screen: SPLASH",20,20);
         app.batch.end();
     }
 
