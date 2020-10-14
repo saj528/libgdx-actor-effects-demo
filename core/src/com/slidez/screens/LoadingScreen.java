@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.slidez.Application;
@@ -27,6 +28,7 @@ public class LoadingScreen implements Screen {
     private void queueAssets() {
         //adds item to queue to be added to asset manager
         app.assets.load("splash.png", Texture.class);
+        app.assets.load("ui/uiskin.atlas", TextureAtlas.class);
     }
 
 
@@ -61,7 +63,7 @@ public class LoadingScreen implements Screen {
         progress = MathUtils.lerp(progress,app.assets.getProgress(),.1f);
         //returns false till all assets are loaded
         if(app.assets.update()){
-           app.setScreen(app.splashScreen);
+           app.setScreen(app.mainMenuScreen);
         }
 
     }
