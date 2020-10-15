@@ -34,6 +34,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void show() {
+        shapeRenderer.setProjectionMatrix(app.camera.combined);
         this.progress = 0f;
         queueAssets();
 

@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.slidez.screens.LoadingScreen;
 import com.slidez.screens.MainMenuScreen;
+import com.slidez.screens.PlayScreen;
 import com.slidez.screens.SplashScreen;
 
 public class Application extends Game {
@@ -30,6 +31,7 @@ public class Application extends Game {
 	public LoadingScreen loadingScreen;
 	public SplashScreen splashScreen;
 	public MainMenuScreen mainMenuScreen;
+	public PlayScreen playScreen;
 
 	@Override
 	public void create () {
@@ -43,6 +45,7 @@ public class Application extends Game {
 		loadingScreen = new LoadingScreen(this);
 		splashScreen = new SplashScreen(this);
 		mainMenuScreen = new MainMenuScreen(this);
+		playScreen = new PlayScreen(this);
 		// sets the game screen to a new instances of the Splashscreen object
 		this.setScreen(loadingScreen);
 
@@ -70,5 +73,6 @@ public class Application extends Game {
 		loadingScreen.dispose();
 		splashScreen.dispose();
 		mainMenuScreen.dispose();
+		playScreen.dispose();
 	}
 }
